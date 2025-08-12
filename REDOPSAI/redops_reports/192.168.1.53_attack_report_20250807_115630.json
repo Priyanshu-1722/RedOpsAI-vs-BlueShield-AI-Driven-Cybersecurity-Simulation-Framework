@@ -1,0 +1,8 @@
+{
+  "victim_ip": "192.168.1.53",
+  "nmap_scan": "Starting Nmap 7.95 ( https://nmap.org ) at 2025-08-07 11:55 IST\nNote: Host seems down. If it is really up, but blocking our ping probes, try -Pn\nNmap done: 1 IP address (0 hosts up) scanned in 1.77 seconds\n",
+  "ai_tool": "",
+  "ai_command": "",
+  "attack_result": "[!] Skipped execution. No valid tool found.",
+  "timestamp": "2025-08-07 11:56:30.692510"
+}
