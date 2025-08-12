@@ -87,31 +87,86 @@ By combining **AI orchestration, Zero Trust architecture, and real-time monitori
 
 ---
 
-## 📊 Network Diagram
+## 📊 Network Diagram (ASCII)
 
-```mermaid
-flowchart TD
-    %% Nodes
-    PC1[PC1: RedOps AI Controller] -->|SSH Remote Control| PC2[PC2: RedOps Attack Engine (Kali)]
-    PC2 -->|Attack Traffic (Filtered)| FW[pfSense: DMZ Firewall Gateway]
-    FW -->|Forwarded/Monitored Traffic| PC3[PC3: BlueShield Monitor]
-    PC3 -->|Monitoring & Protection| PC4[PC4: Web Server (Protected Target)]
++-------------------------------------------------------------+
+|                    [PC1] RedOps AI Controller               |
+|-------------------------------------------------------------|
+| - Hosts LM Studio (AI model interface)                      |
+| - Runs Python scripts for attack orchestration              |
+| - Connects to PC2 via SSH                                   |
+| - Receives logs/alerts from PC3 (BlueShield Monitor)        |
+| - Parses logs using AI/ML models                            |
+| - Automatically adjusts future attack patterns              |
+| - Sends/Receives alert emails to/from PC3                   |
++-----------------------------+-------------------------------+
+                              |
+                              | SSH Remote Control
+                              v
++-------------------------------------------------------------+
+|                 [PC2] RedOps Attack Engine (Kali)           |
+|-------------------------------------------------------------|
+| - Kali Linux VM (offensive platform)                        |
+| - Offensive Tools Installed:                                |
+|     • nmap, sqlmap, hydra, metasploit, nikto                |
+|     • netcat, john, gobuster, curl, sshpass                 |
+|     • python3-pip, wfuzz, whatweb                           |
+|     • OpenVAS (vulnerability scanner)                       |
+| - Executes attack scripts from PC1                          |
+| - Sends attack traffic via pfSense firewall                 |
+| - Logs attacks and sends reports to PC1 via email           |
++-----------------------------+-------------------------------+
+                              |
+                              | Attack Traffic (Filtered)
+                              v
++-------------------------------------------------------------+
+|                  [pfSense] DMZ Firewall Gateway             |
+|-------------------------------------------------------------|
+| - Segregates PC2 (attacker) from PC3 & PC4 (defenders)      |
+| - Applies firewall rules, NAT, and port forwarding          |
+| - Runs Suricata (optional) for inline intrusion detection   |
+| - Allows only controlled/monitored traffic to reach PC3/4   |
++-----------------------------+-------------------------------+
+                              |
+                              | Forwarded/Monitored Traffic
+                              v
++-------------------------------------------------------------+
+|       [PC3] BlueShield Monitor (Defensive System)           |
+|-------------------------------------------------------------|
+| - OS: Ubuntu/Kali Linux (hostname: blueshield-monitor)      |
+| - Tools and Capabilities:                                   |
+|     • ELK Stack (Elasticsearch, Logstash, Kibana)           |
+|     • Suricata / Snort / OSSEC / Wazuh (IDS/IPS)            |
+|     • OpenVPN (optional, remote access VPN)                 |
+|     • OpenSSL + XCA (certs and PKI management)              |
+|     • Python scripts (log parsing, alert automation)        |
+|     • Nagios (system health & uptime monitoring)            |
+|     • Webadmin (dashboard for visualization)                |
+| - Monitors traffic to/from PC4 (Web Server)                 |
+| - Analyzes behavior and anomalies from PC2 attacks          |
+| - Sends alerts and log summaries to PC1 and via email       |
++-----------------------------+-------------------------------+
+                              |
+                              | Monitoring & Protection
+                              v
++-------------------------------------------------------------+
+|               [PC4] Web Server (Protected Target)           |
+|-------------------------------------------------------------|
+| - Hosts the actual production/test website                  |
+| - OS: Ubuntu/Kali/Windows                                   |
+| - Services/Apps: Web server (Apache/Nginx), DB (MySQL/etc)  |
+| - HTTPS enabled via OpenSSL/XCA certificates                |
+| - Protected by PC3’s monitoring and IDS tools               |
+| - Attack examples: SQLi, XSS, RCE, brute-force, etc.        |
+| - All logs monitored and correlated by PC3 (ELK/Wazuh/etc.) |
++-------------------------------------------------------------+
 
-    %% Styling
-    classDef red fill:#ffcccc,stroke:#b30000,stroke-width:2px
-    classDef orange fill:#ffe6cc,stroke:#cc6600,stroke-width:2px
-    classDef gray fill:#f2f2f2,stroke:#333,stroke-width:2px
-    classDef blue fill:#ccf2ff,stroke:#006680,stroke-width:2px
-    classDef purple fill:#e6e6ff,stroke:#333399,stroke-width:2px
-
-    class PC1 red
-    class PC2 orange
-    class FW gray
-    class PC3 blue
-    class PC4 purple
-
-
-```
+🔁 Workflow Summary
+PC1 — Controls attacks and analyzes defense feedback.  
+PC2 — Launches simulated attacks using Kali + OpenVAS.  
+pfSense — Filters and routes traffic between attacker and defenders.  
+PC3 — Monitors, detects anomalies, and sends alerts.  
+PC4 — Serves as the protected web application under attack.
 
 ---
 
