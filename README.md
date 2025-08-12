@@ -1,5 +1,3 @@
----
-
 ```
 # 🔴 RedOpsAI vs BlueShield
 
@@ -89,16 +87,11 @@ By combining **AI orchestration, Zero Trust architecture, and real-time monitori
 
 ---
 
-## 📜 License
-MIT License — see [`LICENSE`](LICENSE) file for details.
-
----
-
 ## 🖥️ Network Diagram
-*(Graphical version recommended for README — replace this text with the image below)*  
-![Architecture Diagram](A_diagram_in_the_image_illustrates_the_architectur.png)
+
+<img width="1024" height="1536" alt="ChatGPT Image Aug 12, 2025, 12_12_39 PM" src="https://github.com/user-attachments/assets/c6e55a78-61d4-411a-be62-d7e022ecdbb3" />
+
 ```
 
 ---
 
-If you want, I can **replace the ASCII diagram with a clean, colorful vector-style network diagram** so it looks like a professional cyber range architecture map instead of plain text. That would make your GitHub README stand out a lot more visually.
