@@ -87,9 +87,29 @@ By combining **AI orchestration, Zero Trust architecture, and real-time monitori
 
 ---
 
-## 🖥️ Network Diagram
+## 📊 Network Diagram
 
-<img width="1024" height="1536" alt="ChatGPT Image Aug 12, 2025, 12_12_39 PM" src="https://github.com/user-attachments/assets/c6e55a78-61d4-411a-be62-d7e022ecdbb3" />
+```mermaid
+flowchart TD
+    %% Nodes
+    PC1[PC1: RedOps AI Controller] -->|SSH Remote Control| PC2[PC2: RedOps Attack Engine (Kali)]
+    PC2 -->|Attack Traffic (Filtered)| FW[pfSense: DMZ Firewall Gateway]
+    FW -->|Forwarded/Monitored Traffic| PC3[PC3: BlueShield Monitor]
+    PC3 -->|Monitoring & Protection| PC4[PC4: Web Server (Protected Target)]
+
+    %% Styling
+    classDef red fill:#ffcccc,stroke:#b30000,stroke-width:2px
+    classDef orange fill:#ffe6cc,stroke:#cc6600,stroke-width:2px
+    classDef gray fill:#f2f2f2,stroke:#333,stroke-width:2px
+    classDef blue fill:#ccf2ff,stroke:#006680,stroke-width:2px
+    classDef purple fill:#e6e6ff,stroke:#333399,stroke-width:2px
+
+    class PC1 red
+    class PC2 orange
+    class FW gray
+    class PC3 blue
+    class PC4 purple
+
 
 ```
 
