@@ -1,0 +1,10 @@
+{
+  "lm_api_url": "http://localhost:1234/v1/chat/completions",
+  "ssh_username": "redops-attack-engine",
+  "ssh_password": "i",
+  "ssh_host": "192.168.1.218",
+  "mongo_host": "localhost",
+  "mongo_port": 27017,
+  "mongo_db": "redops_logs",
+  "mongo_collection": "scan_results"
+}
